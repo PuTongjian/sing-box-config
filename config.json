@@ -1,0 +1,1364 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9095",
+      "external_ui": "/etc/sing-box/ui",
+      "secret": "",
+      "external_ui_download_url": "https://ghproxy.cc/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "🎯 全球直连",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "/etc/sing-box/cache.db",
+      "store_fakeip": false
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "proxyDns",
+        "address": "https://dns.google/dns-query",
+        "address_resolver": "defaultDns",
+        "address_strategy": "ipv4_only",
+        "detour": "🚀 节点选择"
+      },
+      {
+        "tag": "localDns",
+        "address": "223.5.5.5",
+        "address_resolver": "defaultDns",
+        "address_strategy": "ipv4_only",
+        "detour": "🎯 全球直连"
+      },
+      {
+        "tag": "defaultDns",
+        "address": "223.5.5.5",
+        "address_strategy": "ipv4_only",
+        "detour": "🎯 全球直连"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "defaultDns",
+        "disable_cache": true
+      },
+      {
+        "clash_mode": "direct",
+        "server": "localDns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "proxyDns"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "localDns"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "server": "proxyDns"
+      }
+    ],
+    "final": "localDns",
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "address": "172.19.0.1/30",
+      "mtu": 9000,
+      "auto_route": true,
+      "auto_redirect": true,
+      "strict_route": true,
+      "stack": "system",
+      "sniff": true,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
+      "sniff": true,
+      "users": []
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "🚀 节点选择",
+      "type": "selector",
+      "outbounds": [
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换",
+        "♻️ 自动选择",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "📹 YouTube",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🤖 OpenAI",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🍀 Google",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "👨‍💻 Github",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🪟 Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "🐬 OneDrive",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🎵 TikTok",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🎥 Netflix",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "📲 Telegram",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🍏 Apple",
+      "type": "selector",
+      "outbounds": [
+        "🎯 全球直连",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点"
+      ]
+    },
+    {
+      "tag": "🐠 漏网之鱼",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "🐸 手动切换",
+      "type": "selector",
+      "outbounds": [
+        "45.76 GB | 300 GB",
+        "Traffic Reset: 5 Days Left",
+        "Expire Date: 2026-01-19",
+        "🇭🇰 Hong Kong丨01",
+        "🇭🇰 Hong Kong丨02",
+        "🇭🇰 Hong Kong丨03",
+        "🇭🇰 Hong Kong丨04",
+        "🇭🇰 Hong Kong丨05",
+        "🇭🇰 Hong Kong丨06",
+        "🇭🇰 Hong Kong丨07",
+        "🇭🇰 Hong Kong丨08",
+        "🇭🇰 Hong Kong丨09",
+        "🇭🇰 Hong Kong丨10",
+        "🇭🇰 Hong Kong丨11",
+        "🇭🇰 Hong Kong丨12",
+        "🇭🇰 Hong Kong丨13",
+        "🇭🇰 Hong Kong丨14",
+        "🇭🇰 Hong Kong丨15",
+        "🇹🇼 🇨🇳 Taiwan丨01",
+        "🇹🇼 🇨🇳 Taiwan丨02",
+        "🇹🇼 🇨🇳 Taiwan丨03",
+        "🇹🇼 🇨🇳 Taiwan丨04",
+        "🇹🇼 🇨🇳 Taiwan丨05",
+        "🇹🇼 🇨🇳 Taiwan丨06",
+        "🇹🇼 🇨🇳 Taiwan丨07",
+        "🇹🇼 🇨🇳 Taiwan丨08",
+        "🇹🇼 🇨🇳 Taiwan丨09",
+        "🇹🇼 🇨🇳 Taiwan丨10",
+        "🇸🇬 Singapore丨01",
+        "🇸🇬 Singapore丨02",
+        "🇸🇬 Singapore丨03",
+        "🇸🇬 Singapore丨04",
+        "🇸🇬 Singapore丨05",
+        "🇸🇬 Singapore丨06",
+        "🇸🇬 Singapore丨07",
+        "🇸🇬 Singapore丨08",
+        "🇸🇬 Singapore丨09",
+        "🇸🇬 Singapore丨10",
+        "🇯🇵 Japan丨01",
+        "🇯🇵 Japan丨02",
+        "🇯🇵 Japan丨03",
+        "🇯🇵 Japan丨04",
+        "🇯🇵 Japan丨05",
+        "🇯🇵 Japan丨06",
+        "🇯🇵 Japan丨07",
+        "🇯🇵 Japan丨08",
+        "🇯🇵 Japan丨09",
+        "🇯🇵 Japan丨10",
+        "🇺🇸 United States丨01",
+        "🇺🇸 United States丨02",
+        "🇺🇸 United States丨03",
+        "🇺🇸 United States丨04",
+        "🇺🇸 United States丨05",
+        "🇺🇸 United States丨06",
+        "🇺🇸 United States丨07",
+        "🇺🇸 United States丨08",
+        "🇺🇸 United States丨09",
+        "🇺🇸 United States丨10",
+        "🇰🇷 South Korea丨01",
+        "🇨🇦 Canada丨01",
+        "🇬🇧 Great Britain丨01",
+        "🇹🇷 Turkey丨01",
+        "🇮🇳 India丨01",
+        "🇳🇱 Netherlands丨01",
+        "🇫🇷 France | 01",
+        "🇩🇪 Germany | 01",
+        "🇻🇳 Vietnam | 01",
+        "🇲🇾 Malaysia丨01",
+        "🇹🇭 Thailand丨01",
+        "🇵🇭 Philippines丨01"
+      ]
+    },
+    {
+      "tag": "🇭🇰 香港节点",
+      "type": "selector",
+      "outbounds": [
+        "🇭🇰 Hong Kong丨01",
+        "🇭🇰 Hong Kong丨02",
+        "🇭🇰 Hong Kong丨03",
+        "🇭🇰 Hong Kong丨04",
+        "🇭🇰 Hong Kong丨05",
+        "🇭🇰 Hong Kong丨06",
+        "🇭🇰 Hong Kong丨07",
+        "🇭🇰 Hong Kong丨08",
+        "🇭🇰 Hong Kong丨09",
+        "🇭🇰 Hong Kong丨10",
+        "🇭🇰 Hong Kong丨11",
+        "🇭🇰 Hong Kong丨12",
+        "🇭🇰 Hong Kong丨13",
+        "🇭🇰 Hong Kong丨14",
+        "🇭🇰 Hong Kong丨15"
+      ]
+    },
+    {
+      "tag": "🇯🇵 日本节点",
+      "type": "selector",
+      "outbounds": [
+        "🇯🇵 Japan丨01",
+        "🇯🇵 Japan丨02",
+        "🇯🇵 Japan丨03",
+        "🇯🇵 Japan丨04",
+        "🇯🇵 Japan丨05",
+        "🇯🇵 Japan丨06",
+        "🇯🇵 Japan丨07",
+        "🇯🇵 Japan丨08",
+        "🇯🇵 Japan丨09",
+        "🇯🇵 Japan丨10"
+      ]
+    },
+    {
+      "tag": "🇺🇲 美国节点",
+      "type": "selector",
+      "outbounds": [
+        "🇺🇸 United States丨01",
+        "🇺🇸 United States丨02",
+        "🇺🇸 United States丨03",
+        "🇺🇸 United States丨04",
+        "🇺🇸 United States丨05",
+        "🇺🇸 United States丨06",
+        "🇺🇸 United States丨07",
+        "🇺🇸 United States丨08",
+        "🇺🇸 United States丨09",
+        "🇺🇸 United States丨10"
+      ]
+    },
+    {
+      "tag": "🔯 香港自动",
+      "type": "urltest",
+      "outbounds": [
+        "🇭🇰 Hong Kong丨01",
+        "🇭🇰 Hong Kong丨02",
+        "🇭🇰 Hong Kong丨03",
+        "🇭🇰 Hong Kong丨04",
+        "🇭🇰 Hong Kong丨05",
+        "🇭🇰 Hong Kong丨06",
+        "🇭🇰 Hong Kong丨07",
+        "🇭🇰 Hong Kong丨08",
+        "🇭🇰 Hong Kong丨09",
+        "🇭🇰 Hong Kong丨10",
+        "🇭🇰 Hong Kong丨11",
+        "🇭🇰 Hong Kong丨12",
+        "🇭🇰 Hong Kong丨13",
+        "🇭🇰 Hong Kong丨14",
+        "🇭🇰 Hong Kong丨15"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "♻️ 自动选择",
+      "type": "urltest",
+      "outbounds": [
+        "45.76 GB | 300 GB",
+        "Traffic Reset: 5 Days Left",
+        "Expire Date: 2026-01-19",
+        "🇭🇰 Hong Kong丨01",
+        "🇭🇰 Hong Kong丨02",
+        "🇭🇰 Hong Kong丨03",
+        "🇭🇰 Hong Kong丨04",
+        "🇭🇰 Hong Kong丨05",
+        "🇭🇰 Hong Kong丨06",
+        "🇭🇰 Hong Kong丨07",
+        "🇭🇰 Hong Kong丨08",
+        "🇭🇰 Hong Kong丨09",
+        "🇭🇰 Hong Kong丨10",
+        "🇭🇰 Hong Kong丨11",
+        "🇭🇰 Hong Kong丨12",
+        "🇭🇰 Hong Kong丨13",
+        "🇭🇰 Hong Kong丨14",
+        "🇭🇰 Hong Kong丨15",
+        "🇹🇼 🇨🇳 Taiwan丨01",
+        "🇹🇼 🇨🇳 Taiwan丨02",
+        "🇹🇼 🇨🇳 Taiwan丨03",
+        "🇹🇼 🇨🇳 Taiwan丨04",
+        "🇹🇼 🇨🇳 Taiwan丨05",
+        "🇹🇼 🇨🇳 Taiwan丨06",
+        "🇹🇼 🇨🇳 Taiwan丨07",
+        "🇹🇼 🇨🇳 Taiwan丨08",
+        "🇹🇼 🇨🇳 Taiwan丨09",
+        "🇹🇼 🇨🇳 Taiwan丨10",
+        "🇸🇬 Singapore丨01",
+        "🇸🇬 Singapore丨02",
+        "🇸🇬 Singapore丨03",
+        "🇸🇬 Singapore丨04",
+        "🇸🇬 Singapore丨05",
+        "🇸🇬 Singapore丨06",
+        "🇸🇬 Singapore丨07",
+        "🇸🇬 Singapore丨08",
+        "🇸🇬 Singapore丨09",
+        "🇸🇬 Singapore丨10",
+        "🇯🇵 Japan丨01",
+        "🇯🇵 Japan丨02",
+        "🇯🇵 Japan丨03",
+        "🇯🇵 Japan丨04",
+        "🇯🇵 Japan丨05",
+        "🇯🇵 Japan丨06",
+        "🇯🇵 Japan丨07",
+        "🇯🇵 Japan丨08",
+        "🇯🇵 Japan丨09",
+        "🇯🇵 Japan丨10",
+        "🇺🇸 United States丨01",
+        "🇺🇸 United States丨02",
+        "🇺🇸 United States丨03",
+        "🇺🇸 United States丨04",
+        "🇺🇸 United States丨05",
+        "🇺🇸 United States丨06",
+        "🇺🇸 United States丨07",
+        "🇺🇸 United States丨08",
+        "🇺🇸 United States丨09",
+        "🇺🇸 United States丨10",
+        "🇰🇷 South Korea丨01",
+        "🇨🇦 Canada丨01",
+        "🇬🇧 Great Britain丨01",
+        "🇹🇷 Turkey丨01",
+        "🇮🇳 India丨01",
+        "🇳🇱 Netherlands丨01",
+        "🇫🇷 France | 01",
+        "🇩🇪 Germany | 01",
+        "🇻🇳 Vietnam | 01",
+        "🇲🇾 Malaysia丨01",
+        "🇹🇭 Thailand丨01",
+        "🇵🇭 Philippines丨01"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "outbounds": [
+        "45.76 GB | 300 GB",
+        "Traffic Reset: 5 Days Left",
+        "Expire Date: 2026-01-19",
+        "🇭🇰 Hong Kong丨01",
+        "🇭🇰 Hong Kong丨02",
+        "🇭🇰 Hong Kong丨03",
+        "🇭🇰 Hong Kong丨04",
+        "🇭🇰 Hong Kong丨05",
+        "🇭🇰 Hong Kong丨06",
+        "🇭🇰 Hong Kong丨07",
+        "🇭🇰 Hong Kong丨08",
+        "🇭🇰 Hong Kong丨09",
+        "🇭🇰 Hong Kong丨10",
+        "🇭🇰 Hong Kong丨11",
+        "🇭🇰 Hong Kong丨12",
+        "🇭🇰 Hong Kong丨13",
+        "🇭🇰 Hong Kong丨14",
+        "🇭🇰 Hong Kong丨15",
+        "🇹🇼 🇨🇳 Taiwan丨01",
+        "🇹🇼 🇨🇳 Taiwan丨02",
+        "🇹🇼 🇨🇳 Taiwan丨03",
+        "🇹🇼 🇨🇳 Taiwan丨04",
+        "🇹🇼 🇨🇳 Taiwan丨05",
+        "🇹🇼 🇨🇳 Taiwan丨06",
+        "🇹🇼 🇨🇳 Taiwan丨07",
+        "🇹🇼 🇨🇳 Taiwan丨08",
+        "🇹🇼 🇨🇳 Taiwan丨09",
+        "🇹🇼 🇨🇳 Taiwan丨10",
+        "🇸🇬 Singapore丨01",
+        "🇸🇬 Singapore丨02",
+        "🇸🇬 Singapore丨03",
+        "🇸🇬 Singapore丨04",
+        "🇸🇬 Singapore丨05",
+        "🇸🇬 Singapore丨06",
+        "🇸🇬 Singapore丨07",
+        "🇸🇬 Singapore丨08",
+        "🇸🇬 Singapore丨09",
+        "🇸🇬 Singapore丨10",
+        "🇯🇵 Japan丨01",
+        "🇯🇵 Japan丨02",
+        "🇯🇵 Japan丨03",
+        "🇯🇵 Japan丨04",
+        "🇯🇵 Japan丨05",
+        "🇯🇵 Japan丨06",
+        "🇯🇵 Japan丨07",
+        "🇯🇵 Japan丨08",
+        "🇯🇵 Japan丨09",
+        "🇯🇵 Japan丨10",
+        "🇺🇸 United States丨01",
+        "🇺🇸 United States丨02",
+        "🇺🇸 United States丨03",
+        "🇺🇸 United States丨04",
+        "🇺🇸 United States丨05",
+        "🇺🇸 United States丨06",
+        "🇺🇸 United States丨07",
+        "🇺🇸 United States丨08",
+        "🇺🇸 United States丨09",
+        "🇺🇸 United States丨10",
+        "🇰🇷 South Korea丨01",
+        "🇨🇦 Canada丨01",
+        "🇬🇧 Great Britain丨01",
+        "🇹🇷 Turkey丨01",
+        "🇮🇳 India丨01",
+        "🇳🇱 Netherlands丨01",
+        "🇫🇷 France | 01",
+        "🇩🇪 Germany | 01",
+        "🇻🇳 Vietnam | 01",
+        "🇲🇾 Malaysia丨01",
+        "🇹🇭 Thailand丨01",
+        "🇵🇭 Philippines丨01"
+      ]
+    },
+    {
+      "tag": "🎯 全球直连",
+      "type": "direct"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    },
+    {
+      "tag": "45.76 GB | 300 GB",
+      "type": "shadowsocks",
+      "server": "hk001.dogsvip.site",
+      "server_port": 16001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "Traffic Reset: 5 Days Left",
+      "type": "shadowsocks",
+      "server": "hk001.dogsvip.site",
+      "server_port": 16001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "Expire Date: 2026-01-19",
+      "type": "shadowsocks",
+      "server": "hk001.dogsvip.site",
+      "server_port": 16001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨01",
+      "type": "shadowsocks",
+      "server": "hk001.dogsvip.site",
+      "server_port": 16001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨02",
+      "type": "shadowsocks",
+      "server": "hk002.dogsvip.site",
+      "server_port": 16002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨03",
+      "type": "shadowsocks",
+      "server": "hk003.dogsvip.site",
+      "server_port": 16003,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨04",
+      "type": "shadowsocks",
+      "server": "hk004.dogsvip.site",
+      "server_port": 16004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨05",
+      "type": "shadowsocks",
+      "server": "hk005.dogsvip.site",
+      "server_port": 16005,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨06",
+      "type": "shadowsocks",
+      "server": "hk006.dogsvip.site",
+      "server_port": 16006,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨07",
+      "type": "shadowsocks",
+      "server": "hk007.dogsvip.site",
+      "server_port": 16007,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨08",
+      "type": "shadowsocks",
+      "server": "hk008.dogsvip.site",
+      "server_port": 16008,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨09",
+      "type": "shadowsocks",
+      "server": "hk009.dogsvip.site",
+      "server_port": 16009,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨10",
+      "type": "shadowsocks",
+      "server": "hk010.dogsvip.site",
+      "server_port": 16010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨11",
+      "type": "shadowsocks",
+      "server": "hk011.dogsvip.site",
+      "server_port": 16011,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨12",
+      "type": "shadowsocks",
+      "server": "hk012.dogsvip.site",
+      "server_port": 16012,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨13",
+      "type": "shadowsocks",
+      "server": "hk013.dogsvip.site",
+      "server_port": 16013,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨14",
+      "type": "shadowsocks",
+      "server": "hk014.dogsvip.site",
+      "server_port": 16014,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇭🇰 Hong Kong丨15",
+      "type": "shadowsocks",
+      "server": "hk015.dogsvip.site",
+      "server_port": 16015,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨01",
+      "type": "shadowsocks",
+      "server": "tw001.dogsvip.site",
+      "server_port": 17001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨02",
+      "type": "shadowsocks",
+      "server": "tw002.dogsvip.site",
+      "server_port": 17002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨03",
+      "type": "shadowsocks",
+      "server": "tw003.dogsvip.site",
+      "server_port": 17003,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨04",
+      "type": "shadowsocks",
+      "server": "tw004.dogsvip.site",
+      "server_port": 17004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨05",
+      "type": "shadowsocks",
+      "server": "tw005.dogsvip.site",
+      "server_port": 17005,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨06",
+      "type": "shadowsocks",
+      "server": "tw006.dogsvip.site",
+      "server_port": 17006,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨07",
+      "type": "shadowsocks",
+      "server": "tw007.dogsvip.site",
+      "server_port": 17007,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨08",
+      "type": "shadowsocks",
+      "server": "tw008.dogsvip.site",
+      "server_port": 17008,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨09",
+      "type": "shadowsocks",
+      "server": "tw009.dogsvip.site",
+      "server_port": 17009,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇼 🇨🇳 Taiwan丨10",
+      "type": "shadowsocks",
+      "server": "tw009.dogsvip.site",
+      "server_port": 17010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨01",
+      "type": "shadowsocks",
+      "server": "sg001.dogsvip.site",
+      "server_port": 18001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨02",
+      "type": "shadowsocks",
+      "server": "sg002.dogsvip.site",
+      "server_port": 18002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨03",
+      "type": "shadowsocks",
+      "server": "sg003.dogsvip.site",
+      "server_port": 18003,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨04",
+      "type": "shadowsocks",
+      "server": "sg004.dogsvip.site",
+      "server_port": 18004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨05",
+      "type": "shadowsocks",
+      "server": "sg005.dogsvip.site",
+      "server_port": 18005,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨06",
+      "type": "shadowsocks",
+      "server": "sg006.dogsvip.site",
+      "server_port": 18006,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨07",
+      "type": "shadowsocks",
+      "server": "sg007.dogsvip.site",
+      "server_port": 18007,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨08",
+      "type": "shadowsocks",
+      "server": "sg008.dogsvip.site",
+      "server_port": 18008,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨09",
+      "type": "shadowsocks",
+      "server": "sg009.dogsvip.site",
+      "server_port": 18009,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇸🇬 Singapore丨10",
+      "type": "shadowsocks",
+      "server": "sg010.dogsvip.site",
+      "server_port": 18010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨01",
+      "type": "shadowsocks",
+      "server": "jp001.dogsvip.site",
+      "server_port": 19001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨02",
+      "type": "shadowsocks",
+      "server": "jp002.dogsvip.site",
+      "server_port": 19002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨03",
+      "type": "shadowsocks",
+      "server": "jp003.dogsvip.site",
+      "server_port": 19004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨04",
+      "type": "shadowsocks",
+      "server": "jp004.dogsvip.site",
+      "server_port": 19004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨05",
+      "type": "shadowsocks",
+      "server": "jp005.dogsvip.site",
+      "server_port": 19004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨06",
+      "type": "shadowsocks",
+      "server": "jp006.dogsvip.site",
+      "server_port": 19006,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨07",
+      "type": "shadowsocks",
+      "server": "jp007.dogsvip.site",
+      "server_port": 19007,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨08",
+      "type": "shadowsocks",
+      "server": "jp008.dogsvip.site",
+      "server_port": 19008,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨09",
+      "type": "shadowsocks",
+      "server": "jp009.dogsvip.site",
+      "server_port": 19009,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇯🇵 Japan丨10",
+      "type": "shadowsocks",
+      "server": "jp010.dogsvip.site",
+      "server_port": 19010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨01",
+      "type": "shadowsocks",
+      "server": "us001.dogsvip.site",
+      "server_port": 20001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨02",
+      "type": "shadowsocks",
+      "server": "us002.dogsvip.site",
+      "server_port": 20002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨03",
+      "type": "shadowsocks",
+      "server": "us003.dogsvip.site",
+      "server_port": 20003,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨04",
+      "type": "shadowsocks",
+      "server": "us004.dogsvip.site",
+      "server_port": 20004,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨05",
+      "type": "shadowsocks",
+      "server": "us005.dogsvip.site",
+      "server_port": 20005,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨06",
+      "type": "shadowsocks",
+      "server": "us006.dogsvip.site",
+      "server_port": 20006,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨07",
+      "type": "shadowsocks",
+      "server": "us007.dogsvip.site",
+      "server_port": 20007,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨08",
+      "type": "shadowsocks",
+      "server": "us008.dogsvip.site",
+      "server_port": 20008,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨09",
+      "type": "shadowsocks",
+      "server": "us009.dogsvip.site",
+      "server_port": 20009,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇺🇸 United States丨10",
+      "type": "shadowsocks",
+      "server": "us010.dogsvip.site",
+      "server_port": 20010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇰🇷 South Korea丨01",
+      "type": "shadowsocks",
+      "server": "kr001.dogsvip.site",
+      "server_port": 21001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇨🇦 Canada丨01",
+      "type": "shadowsocks",
+      "server": "ca001.dogsvip.site",
+      "server_port": 22002,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇬🇧 Great Britain丨01",
+      "type": "shadowsocks",
+      "server": "uk001.dogsvip.site",
+      "server_port": 23001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇷 Turkey丨01",
+      "type": "shadowsocks",
+      "server": "tr001.dogsvip.site",
+      "server_port": 24001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇮🇳 India丨01",
+      "type": "shadowsocks",
+      "server": "in001.dogsvip.site",
+      "server_port": 25001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇳🇱 Netherlands丨01",
+      "type": "shadowsocks",
+      "server": "nl001.dogsvip.site",
+      "server_port": 26001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇫🇷 France | 01",
+      "type": "shadowsocks",
+      "server": "fr001.dogsvip.site",
+      "server_port": 27001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇩🇪 Germany | 01",
+      "type": "shadowsocks",
+      "server": "de001.dogsvip.site",
+      "server_port": 28001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇻🇳 Vietnam | 01",
+      "type": "shadowsocks",
+      "server": "vn001.dogsvip.site",
+      "server_port": 29001,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇲🇾 Malaysia丨01",
+      "type": "shadowsocks",
+      "server": "myr01.dogsvip.site",
+      "server_port": 29010,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇹🇭 Thailand丨01",
+      "type": "shadowsocks",
+      "server": "tha01.dogsvip.site",
+      "server_port": 29015,
+      "method": "aes-256-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    },
+    {
+      "tag": "🇵🇭 Philippines丨01",
+      "type": "shadowsocks",
+      "server": "ph01.dogsvip.site",
+      "server_port": 29020,
+      "method": "aes-128-gcm",
+      "password": "eb58e631-971e-42b0-b267-f17a985f9f99"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "final": "🐠 漏网之鱼",
+    "rules": [
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
+        ],
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": [
+          "geosite-private",
+          "geoip-private"
+        ],
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "geosite-chat",
+        "outbound": "🤖 OpenAI"
+      },
+      {
+        "rule_set": "geosite-github",
+        "outbound": "👨‍💻 Github"
+      },
+      {
+        "rule_set": "geosite-youtube",
+        "outbound": "📹 YouTube"
+      },
+      {
+        "rule_set": "geosite-onedrive",
+        "outbound": "🐬 OneDrive"
+      },
+      {
+        "rule_set": "geosite-microsoft",
+        "outbound": "🪟 Microsoft"
+      },
+      {
+        "rule_set": [
+          "geoip-google",
+          "geosite-google"
+        ],
+        "outbound": "🍀 Google"
+      },
+      {
+        "rule_set": "geosite-tiktok",
+        "outbound": "🎵 TikTok"
+      },
+      {
+        "rule_set": [
+          "geoip-apple",
+          "geosite-apple"
+        ],
+        "outbound": "🍏 Apple"
+      },
+      {
+        "rule_set": [
+          "geoip-netflix",
+          "geosite-netflix"
+        ],
+        "outbound": "🎥 Netflix"
+      },
+      {
+        "rule_set": [
+          "geoip-telegram",
+          "geosite-telegram"
+        ],
+        "outbound": "📲 Telegram"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "🚀 节点选择"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "🎯 全球直连"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite-chat",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-youtube",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-github",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-tiktok",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-microsoft",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-onedrive",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-private",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-private",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.cc/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
+        "download_detour": "🎯 全球直连"
+      }
+    ]
+  }
+}
