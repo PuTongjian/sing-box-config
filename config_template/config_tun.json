@@ -23,7 +23,7 @@
 
   "dns": {
     "servers": [
-      {"tag": "proxyDns", "address": "https://1.12.12.12/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
+      {"tag": "proxyDns", "address": "https://1.1.1.1/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
       {"tag": "localDns", "address": "114.114.114.114", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
       {"tag": "defaultDns", "address": "114.114.114.114", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
     ],
