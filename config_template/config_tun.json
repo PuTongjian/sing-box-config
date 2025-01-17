@@ -59,9 +59,18 @@
   },
   {
     "type": "mixed",
-    "listen": "0.0.0.0",
+    "listen": "127.0.0.1",
     "listen_port": 2080,
+    "sniff": true,
     "users": []
+  },
+  {
+    "type": "http",
+    "listen": "0.0.0.0",
+    "listen_port": 8080,
+    "sniff": true,
+    "users": [],
+    "detour": "🚀 节点选择",
   }
 ],
 
