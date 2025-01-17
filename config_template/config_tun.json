@@ -23,7 +23,7 @@
     "servers": [
       {
         "tag": "proxyDns",
-        "address": "8.8.8.8",
+        "address": "1.1.1.1",
         "address_resolver": "defaultDns",
         "address_strategy": "ipv4_only",
         "detour": "🚀 节点选择"
