@@ -23,7 +23,7 @@
 
   "dns": {
     "servers": [
-      {"tag": "proxyDns", "address": "https://1.1.1.1/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
+      {"tag": "proxyDns", "address": "https://dns.google/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
       {"tag": "localDns", "address": "114.114.114.114", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
       {"tag": "defaultDns", "address": "114.114.114.114", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
     ],
@@ -35,7 +35,8 @@
       { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
     ],
     "final": "localDns",
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "fakeip": { "enabled": true, "inet4_range": "198.18.0.0/15" }
   },
 
 "inbounds": [
@@ -47,7 +48,6 @@
     "auto_redirect": true,
     "strict_route": true,
     "stack": "system",
-    "sniff": true,
     "platform": {
       "http_proxy": {
         "enabled": true,
@@ -60,7 +60,6 @@
     "type": "mixed",
     "listen": "0.0.0.0",
     "listen_port": 2080,
-    "sniff": true,
     "users": []
   }
 ],
