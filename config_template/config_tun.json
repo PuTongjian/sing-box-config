@@ -81,7 +81,6 @@
       "auto_redirect": true,
       "strict_route": true,
       "stack": "system",
-      "sniff": true,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -94,7 +93,6 @@
       "type": "http",
       "listen": "0.0.0.0",
       "listen_port": 2080,
-      "sniff": true,
       "users": []
     }
   ],
