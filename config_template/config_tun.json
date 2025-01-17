@@ -81,14 +81,15 @@
       "auto_redirect": true,
       "strict_route": true,
       "stack": "system",
+      "sniff": true
+    },
+    {
+      "type": "http",
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
       "sniff": true,
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "0.0.0.0",
-          "server_port": 2080
-        }
-      }
+      "users": [],
+      "detour": "🚀 节点选择"
     }
   ],
   "outbounds": [
