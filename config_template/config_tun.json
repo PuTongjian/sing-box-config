@@ -27,7 +27,7 @@
    [
      {"tag": "dns_direct", "address": "223.5.5.5", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"},
      {"tag": "dns_proxy", "address": "tls://8.8.8.8", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🚀 节点选择"},
-     {"type": "fakeip", "tag": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
+     {"type": "fakeip", "tag": "fakeip"}
    ],
    "rules": 
    [
@@ -38,6 +38,11 @@
      {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"},
      {"query_type": ["A", "AAAA"], "server": "fakeip"}
    ],
+   "fakeip": {
+      "enable": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
    "final": "dns_proxy",
    "strategy": "ipv4_only"
 },
