@@ -30,7 +30,7 @@
             {
                 "tag": "dns_proxy",
                 "type": "tls",
-                "server": "tls://8.8.8.8",
+                "server": "8.8.8.8",
                 "detour": "🚀 节点选择"
             },
             {
