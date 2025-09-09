@@ -42,10 +42,12 @@
     { "tag": "🔯 美国自动", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
     { "tag": "🍖 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
     { "tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 节点选择", "📹 YouTube", "🤖 OpenAI", "🍀 Google", "👨‍💻 Github", "🪟 Microsoft", "🐬 OneDrive", "🎵 TikTok", "🎥 Netflix", "🎥 Disney+", "🍄 Game", "📲 Telegram", "🍏 Apple", "⏱️ Speedtest", "🕸️ 兜底策略", "🍤 手动切换", "🍨 香港", "🇨🇳 台湾", "🥘 新加坡", "🍣 日本", "🍔 美国", "🔯 香港自动", "🔯 美国自动", "🍖 自动选择"]},
-    { "tag": "➡️ 直连", "type": "direct" }
+    { "tag": "➡️ 直连", "type": "direct" },
+    { "tag": "🏢 公司VPN", "type": "socks", "server": "192.168.1.150", "server_port": 9052 }
   ],
   "route": {
     "rules": [
+      {"ip_cidr": ["10.10.0.0/12"], "outbound": "🏢 公司VPN"},
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
       {"ip_is_private": true, "outbound": "➡️ 直连"},
